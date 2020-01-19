@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jquery practise</title>
+	<link rel="stylesheet" type="text/css" href="../styles/reset.css">
+	<link rel="stylesheet" type="text/css" href="../styles/wraplayout.css">
+	<script src="../js/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="../js/index.js" type="text/javascript"></script>
+<style>
+	#thediv{
+		width: 200px;
+		height: 100px;
+		background-color: #ccc;
+		line-height: 100px;
+		text-align: center;
+		color:rgb(223,003,123);
+	}
+</style>
+<script type="text/javascript">
+	;(function($){
+		$.fn.extend({
+			"getHexBackgroundColor": function(id,property){ 
+			    var rgb=$(id).css(property); 
+			    rgb=rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/); 
+			    function hex(x){ 
+			      return ("0"+Number.parseInt(x).toString(16)).slice(-2); 
+			    } 
+			    rgb="#"+hex(rgb[1])+hex(rgb[2])+hex(rgb[3]); 
+			  	return rgb; 
+			}
+		});
+	})(jQuery);
+	$(function(){
+		$("#bt").click(function(){
+			$("#thediv").text($.fn.getHexBackgroundColor("#thediv",'color'));
+		})
+	});
+</script>
+</head>
+<body>
+<div id="wrap">
+	<div class="demo">
+		<div id="thediv">这是一段有rgb颜色定义的文字</div>
+		<input type="button" value="点击产看上面文字背景颜色的十六进制写法" id="bt">
+	</div>
+<button id="turnback"><a href="http://www.luwanlin.com/">返回目录</a></button>
+</div>
+
+</body>
+</html>
